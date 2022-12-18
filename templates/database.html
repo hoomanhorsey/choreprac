@@ -1,0 +1,173 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log Chore
+{% endblock %}
+
+
+{% block main %}
+
+<body class="bluebackground">
+
+
+<h2>Database(s)</h2>
+
+
+
+
+
+<table class="table table-striped">
+    <thead>
+    </thead>
+
+    <tbody>
+        <tr>
+            <th> Category </th>
+            <th> Chore</th>
+            <th> Who chored it</th>
+            <th> When</th>
+        </tr>
+
+        <tr>
+
+            <td>
+            {% for i in dbresult %}
+
+            <tr style="background-color:{{i.color}}" >
+                <td>  {{i.chorecategory }} </td>
+
+
+                <form action="/logchore" method="post">
+
+                    <td>
+                        <div class="mb-3">
+                                <select id="chore" name="chore">
+                                    <option value="">--Please select a chore--</option>
+                                    
+                                    {% for i in i.chore %}
+                                        
+                                        <option value="{{i}}"> {{ i }} </option>  
+                                
+                                    {% endfor %}
+                        
+                                </select>
+                            </div>
+                        </td>
+                    <td>
+                    
+                    <div class="mb-3">
+                        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="date3" name="date" placeholder="date" required type="date">
+                    </div>
+                    </td>
+                    <td>       <button class="btn btn-primary" type="submit">Log dat chore!</button>               </td>
+                    
+                    </form>
+                        </td>
+
+
+                {% endfor %}
+
+    </tr>
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+<table class="table table-striped">
+    <thead>
+    </thead>
+
+    <tbody>
+        <tr>
+            <th> Category </th>
+            <th> Chore</th>
+        </tr>
+
+        <tr>
+
+            <td>
+            {% for i in dbresult %}
+
+            <tr style="background-color:{{i.color}}" >
+                <td>  {{i.chorecategory }} </td>
+                <td>
+                    <form action="/TODO">
+                                     
+                        {% for i in i.chore %}
+                            <input type="checkbox" id="{{i}}" name="{{i}}" value="{{i}}">
+                            <label for="{{i}}"> {{i}}</label><br>
+                        {% endfor %} 
+            {% endfor %}
+                
+        </td>
+        <input type="submit" value="Submit">
+
+    </form>
+
+    </tr>
+    </tbody>
+</table>
+
+
+
+
+<table class="table table-striped">
+    <thead>
+    </thead>
+
+    <tbody>
+        <tr>
+            <th> Category </th>
+            <th> Chore</th>
+            <th> Select/DeselectChore</th>
+            
+        </tr>
+
+        <tr>
+
+            <td>
+            {% for i in dbexpand %}
+
+            <tr style="background-color:{{i.color}}" >
+                <td>  {{i.chorecategory }} </td>
+                <td>
+                    
+                            <label for="{{i.chore}}"> '{{i.ID}}'delete id from display later' {{i.chore}}</label><br>
+                  
+                </td>
+                <td> <form action="/TODO">
+                    <input type="checkbox" id="{{i}}" name="{{i}}" value="{{i}}">
+                </td>
+                {% endfor %}
+
+        <input type="submit" value="Submit">
+
+    </form>
+
+    </tr>
+    </tbody>
+</table>
+
+
+
+
+<p>Finished logging chores....</p>
+ <p class="btn"> <a href="/"> Return to index </a> </p>
+
+<script>
+        document.getElementById('date').setAttribute('max', new Date().toISOString().split('T')[0])
+        document.getElementById('date1').setAttribute('max', new Date().toISOString().split('T')[0])
+        document.getElementById('date2').setAttribute('max', new Date().toISOString().split('T')[0])
+        document.getElementById('date3').setAttribute('max', new Date().toISOString().split('T')[0])
+</script>
+
+</body>
+
+{% endblock %}
+

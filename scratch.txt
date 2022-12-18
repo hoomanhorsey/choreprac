@@ -1,0 +1,14 @@
+
+[
+    {'chorecategory': 'Bathroom', 'chore': 'Floor - Mop,Floor - Scrub,Floor - Sweep,Floor - Sweep,Clean toilet,Clean sink,Clean shower curtains,Clean walls'}, 
+    {'chorecategory': 'Food', 'chore': 'Grocery shop,Make Breakfast,Make Lunch,Make Dinner'}, 
+    {'chorecategory': 'Garden', 'chore': 'Water plants'},
+    {'chorecategory': 'Kitchen', 'chore': 'Floor - Mop,Floor - Scrub,Floor - Sweep,Clean oven,Clean bins,Clean fridge'}, 
+    {'chorecategory': 'Surfaces', 'chore': 'Floors - vacuum,Floors - sweep,Floors - mop '}]
+
+
+   {% for i in dbresult %}
+        {% for f in i.chore%}
+            <option value="{{f}}">{{ f }} </option>  
+        {% endfor %}                   
+    {% endfor %}
